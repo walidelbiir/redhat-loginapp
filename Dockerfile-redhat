@@ -17,7 +17,8 @@ RUN useradd -r -m -U -d /opt/tomcat -s /bin/bash tomcat
 # Give Tomcat User Permissions
 RUN chown -R tomcat:tomcat /opt/tomcat && \
     chmod -R 750 /opt/tomcat && \
-    usermod -aG root tomcat
+    usermod -aG root tomcat && \
+    chmod +x $CATALINA_HOME/bin/catalina.sh
 
 # Switch to Tomcat User
 USER tomcat
