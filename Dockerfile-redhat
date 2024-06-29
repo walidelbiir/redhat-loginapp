@@ -1,21 +1,5 @@
 FROM registry.access.redhat.com/ubi9:9.4-1123
 
-
-# Create a Tomcat User
-RUN useradd -r -m -U -d /opt/tomcat -s /bin/bash tomcat
-
-# Give Tomcat User Permissions
-RUN chown -R tomcat:tomcat /opt/tomcat
-RUN chmod -R 750 /opt/tomcat
-
-# Switch to Tomcat User
-USER tomcat
-
-# Set environment variables
-ENV JAVA_HOME /usr/lib/jvm/jre
-ENV CATALINA_HOME /opt/tomcat
-ENV PATH $CATALINA_HOME/bin:$PATH
-
 # Install necessary packages
 RUN dnf update -y && \
     dnf install -y java-11-openjdk-devel wget && \
@@ -26,6 +10,22 @@ RUN wget https://downloads.apache.org/tomcat/tomcat-9/v9.0.90/bin/apache-tomcat-
     tar xzvf apache-tomcat-9.0.90.tar.gz && \
     mv apache-tomcat-9.0.90 /opt/tomcat && \
     rm apache-tomcat-9.0.90.tar.gz
+
+# Create a Tomcat User
+RUN useradd -r -m -U -d /opt/tomcat -s /bin/bash tomcat
+
+# Give Tomcat User Permissions
+RUN chown -R tomcat:tomcat /opt/tomcat && \
+    chmod -R 750 /opt/tomcat && \
+    usermod -aG root tomcat
+
+# Switch to Tomcat User
+USER tomcat
+
+# Set environment variables
+ENV JAVA_HOME /usr/lib/jvm/jre
+ENV CATALINA_HOME /opt/tomcat
+ENV PATH $CATALINA_HOME/bin:$PATH
 
 # Copy your application WAR file
 COPY /target/LoginWebApp.war $CATALINA_HOME/webapps/
