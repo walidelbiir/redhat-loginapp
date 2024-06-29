@@ -26,6 +26,7 @@ USER tomcat
 ENV JAVA_HOME /usr/lib/jvm/jre
 ENV CATALINA_HOME /opt/tomcat
 ENV PATH $CATALINA_HOME/bin:$PATH
+ENV PATH $CATALINA_HOME/bin/catalina.sh:$PATH
 
 # Copy your application WAR file
 COPY /target/LoginWebApp.war $CATALINA_HOME/webapps/
