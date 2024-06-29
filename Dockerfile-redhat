@@ -1,5 +1,16 @@
 FROM registry.access.redhat.com/ubi9:9.4-1123
 
+
+# Create a Tomcat User
+RUN useradd -r -m -U -d /opt/tomcat -s /bin/bash tomcat
+
+# Give Tomcat User Permissions
+RUN chown -R tomcat:tomcat /opt/tomcat
+RUN chmod -R 750 /opt/tomcat
+
+# Switch to Tomcat User
+USER tomcat
+
 # Set environment variables
 ENV JAVA_HOME /usr/lib/jvm/jre
 ENV CATALINA_HOME /opt/tomcat
