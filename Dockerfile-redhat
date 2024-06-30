@@ -12,8 +12,8 @@ RUN wget https://downloads.apache.org/tomcat/tomcat-9/v9.0.90/bin/apache-tomcat-
     rm apache-tomcat-9.0.90.tar.gz
 
 # Set more permissive permissions
-RUN chmod -R 755 /opt/tomcat && \
-    chmod 755 /opt/tomcat/bin/*.sh
+RUN chmod -R 777 /opt/tomcat && \
+    chmod 777 /opt/tomcat/bin/*.sh
 
 # Set environment variables
 ENV JAVA_HOME /usr/lib/jvm/jre
