@@ -1,11 +1,11 @@
 <%@ page import="java.sql.*"%>
 <%
     // Database connection details
-    String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
-    String DB_URL = "jdbc:mysql://mysql:3306/";
-    String DB_NAME = "sample";
-    String USER = "root";
-    String PASS = "Qwerty@12345";
+    String JDBC_DRIVER = System.getenv("DBC_DRIVER") != null ? System.getenv("DBC_DRIVER") : "com.mysql.cj.jdbc.Driver";
+    String DB_URL = System.getenv("DB_URL") != null ? System.getenv("DB_URL") : "jdbc:mysql://mysql:3306/";
+    String DB_NAME = System.getenv("DB_NAME") != null ? System.getenv("DB_NAME") : "sample";
+    String USER = System.getenv("USER") != null ? System.getenv("USER") : "root";
+    String PASS = System.getenv("PASS") != null ? System.getenv("PASS") : "Qwerty@12345";
 
     // Get form parameters
     String userName = request.getParameter("userName");
