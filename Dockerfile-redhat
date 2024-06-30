@@ -11,23 +11,14 @@ RUN wget https://downloads.apache.org/tomcat/tomcat-9/v9.0.90/bin/apache-tomcat-
     mv apache-tomcat-9.0.90 /opt/tomcat && \
     rm apache-tomcat-9.0.90.tar.gz
 
-# Create a Tomcat User
-RUN useradd -r -m -U -d /opt/tomcat -s /bin/bash tomcat
-
-# Give Tomcat User Permissions
-RUN chown -R tomcat:tomcat /opt/tomcat && \
-    chmod -R 750 /opt/tomcat && \
-    usermod -aG root tomcat && \
-    chmod +x opt/tomcat/bin/catalina.sh
-
-# Switch to Tomcat User
-USER tomcat
+# Set more permissive permissions
+RUN chmod -R 755 /opt/tomcat && \
+    chmod 755 /opt/tomcat/bin/*.sh
 
 # Set environment variables
 ENV JAVA_HOME /usr/lib/jvm/jre
 ENV CATALINA_HOME /opt/tomcat
 ENV PATH $CATALINA_HOME/bin:$PATH
-ENV PATH $CATALINA_HOME/bin/catalina.sh:$PATH
 
 # Copy your application WAR file
 COPY /target/LoginWebApp.war $CATALINA_HOME/webapps/
@@ -35,7 +26,10 @@ COPY /target/LoginWebApp.war $CATALINA_HOME/webapps/
 # Expose the default Tomcat port
 EXPOSE 8080
 
-HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 CMD curl --fail http://localhost:8080 || exit 1 
+HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 CMD curl --fail http://localhost:8080 || exit 1
+
+# Use numeric user ID (adjust as needed)
+USER 1001
 
 # Start Tomcat
-CMD ["catalina.sh", "run"]
+CMD ["/opt/tomcat/bin/catalina.sh", "run"]
