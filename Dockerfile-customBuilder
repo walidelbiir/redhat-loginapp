@@ -6,7 +6,11 @@ COPY ./.s2i/bin/ /usr/libexec/s2i
 
 # Set permissions
 USER root
-RUN chmod 755 /usr/libexec/s2i/*
+RUN chmod 755 /usr/libexec/s2i/* && \
+    chgrp -R 0 /usr/libexec/s2i/* && \
+    chmod -R g=u /usr/libexec/s2i/*
+
+USER 1000680000
 
 # Set the default command
 CMD ["/usr/libexec/s2i/run"]
