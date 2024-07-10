@@ -2,6 +2,9 @@
 
 set -e
 
+git clone $SOURCE_URI /tmp/src
+
+cd /tmp/src
 
 # Set up variables for the internal registry
 REGISTRY="image-registry.openshift-image-registry.svc:5000"

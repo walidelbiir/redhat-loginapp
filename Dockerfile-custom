@@ -7,7 +7,8 @@ RUN mkdir -p ${HOME} && \
 
 COPY ./custom-scripts/ ${HOME}/scripts
 
-RUN chmod +x ${HOME}/scripts/*.sh
+RUN chmod +x ${HOME}/scripts/*.sh && \
+    dnf install -y git-all
 
 USER 1000680000 
 
