@@ -1,0 +1,19 @@
+FROM registry.redhat.io/jboss-webserver-5/jws58-openjdk11-openshift-rhel8:5.8.0-5
+
+
+# Copy S2I scripts to /usr/libexec/s2i
+COPY ./.s2i/bin/ /usr/libexec/s2i
+
+# Set permissions
+USER root
+RUN chmod 755 /usr/libexec/s2i/*
+
+# Set the default command
+CMD ["/usr/libexec/s2i/run"]
+
+# Expose the default JBoss ports
+EXPOSE 8080 9990
+
+# Health check
+HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 CMD curl --fail http://localhost:8080 || exit 1
+
