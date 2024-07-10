@@ -9,7 +9,7 @@ COPY ./custom-scripts/ ${HOME}/scripts
 
 RUN chmod +x ${HOME}/scripts/*.sh && \
     dnf update -y && \
-    dnf install -y git-all
+    dnf install -y git
 
 USER 1000680000 
 
