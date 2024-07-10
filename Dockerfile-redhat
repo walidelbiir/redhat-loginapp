@@ -12,9 +12,12 @@ RUN wget https://downloads.apache.org/tomcat/tomcat-9/v9.0.90/bin/apache-tomcat-
     rm apache-tomcat-9.0.90.tar.gz
 
 # Set more permissive permissions
-RUN chmod -R 777 /opt/tomcat && \
-    chmod 777 /opt/tomcat/bin/*.sh
+#RUN chmod -R 777 /opt/tomcat && \
+#chmod 777 /opt/tomcat/bin/*.sh
 
+RUN chgrp -R 0 /usr/local/tomcat/ && \
+    chmod -R g=u /usr/local/tomcat/
+    
 # Set environment variables
 ENV JAVA_HOME /usr/lib/jvm/jre
 ENV CATALINA_HOME /opt/tomcat
@@ -28,7 +31,7 @@ EXPOSE 8080
 
 HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 CMD curl --fail http://localhost:8080 || exit 1
 
-# Use numeric user ID (adjust as needed)
+# Use numeric user ID 
 USER 1001
 
 # Start Tomcat
