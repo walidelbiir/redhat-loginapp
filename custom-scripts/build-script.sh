@@ -17,7 +17,7 @@ PASSWORD="user@1243"
 FULL_IMAGE_NAME="${REGISTRY}/${NAMESPACE}/${IMAGE_STREAM_NAME}:${IMAGE_TAG}"
 
 # Build the image
-buildah bud -t ${FULL_IMAGE_NAME} .
+buildah bud -t ${FULL_IMAGE_NAME} -f ./Dockerfile-tomcat .
 
 # Authenticate with the internal registry
 #TOKEN=$(cat /var/run/secrets/kubernetes.io/serviceaccount/token)
