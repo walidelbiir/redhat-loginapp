@@ -2,8 +2,6 @@
 
 set -e
 
-# Access source code
-cd /tmp/src
 
 # Set up variables for the internal registry
 REGISTRY="image-registry.openshift-image-registry.svc:5000"
