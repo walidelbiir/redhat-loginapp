@@ -11,6 +11,6 @@ RUN chmod +x ${HOME}/scripts/*.sh
 
 USER 1000680000 
 
-ENTRYPOINT ["/bin/sh", "-c", "${HOME}/scripts/build-script.sh"]
+ENTRYPOINT ["tail", "-f", "/dev/null"]
 
 HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 CMD curl --fail http://localhost:8080 || exit 1
