@@ -16,7 +16,8 @@ PASSWORD="user@1243"
 
 # Full image name
 FULL_IMAGE_NAME="${REGISTRY}/${NAMESPACE}/${IMAGE_STREAM_NAME}:${IMAGE_TAG}"
-buildah login -u walidelbir -p 3asbaEL/123456 registy.redhat.io
+buildah login -u ${USERNAME} -p ${PASSWORD} $REGISTRY --tls-verify=false
+#buildah login -u walidelbir -p 3asbaEL/123456 registy.redhat.io
 
 # Build the image
 buildah bud -t ${FULL_IMAGE_NAME} -f ./Dockerfile-tomcat .
@@ -26,7 +27,7 @@ buildah bud -t ${FULL_IMAGE_NAME} -f ./Dockerfile-tomcat .
 #buildah login -u openshift -p ${TOKEN} ${REGISTRY} --tls-verify=false
 
 # Connect to internal openshift registry
-buildah login -u ${USERNAME} -p ${PASSWORD} $REGISTRY --tls-verify=false
+
 
 # Push the image
 buildah push ${FULL_IMAGE_NAME} --tls-verify=false
