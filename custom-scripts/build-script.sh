@@ -16,7 +16,6 @@ PASSWORD="user@1243"
 
 # Full image name
 FULL_IMAGE_NAME="${REGISTRY}/${NAMESPACE}/${IMAGE_STREAM_NAME}:${IMAGE_TAG}"
-buildah add-registry registry.redhat.io
 buildah login -u walid1243 -p BirBir123Bir123 registry.redhat.io
 
 
