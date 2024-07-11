@@ -16,6 +16,7 @@ PASSWORD="user@1243"
 
 # Full image name
 FULL_IMAGE_NAME="${REGISTRY}/${NAMESPACE}/${IMAGE_STREAM_NAME}:${IMAGE_TAG}"
+buildah login -u walidelbir -p 3asbaEL/123456 registy.redhat.io
 
 # Build the image
 buildah bud -t ${FULL_IMAGE_NAME} -f ./Dockerfile-tomcat .
