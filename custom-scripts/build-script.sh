@@ -16,15 +16,17 @@ PASSWORD="user@1243"
 
 # Full image name
 FULL_IMAGE_NAME="${REGISTRY}/${NAMESPACE}/${IMAGE_STREAM_NAME}:${IMAGE_TAG}"
-buildah login -u ${USERNAME} -p ${PASSWORD} $REGISTRY --tls-verify=false
+#buildah login -u ${USERNAME} -p ${PASSWORD} $REGISTRY --tls-verify=false
 #buildah login -u walidelbir -p 3asbaEL/123456 registy.redhat.io
+
+# Authenticate with the internal registry
+TOKEN=$(cat /var/run/secrets/kubernetes.io/serviceaccount/token)
+buildah login -u custom-builder -p ${TOKEN} ${REGISTRY} --tls-verify=false
 
 # Build the image
 buildah bud -t ${FULL_IMAGE_NAME} -f ./Dockerfile-tomcat .
 
-# Authenticate with the internal registry
-#TOKEN=$(cat /var/run/secrets/kubernetes.io/serviceaccount/token)
-#buildah login -u openshift -p ${TOKEN} ${REGISTRY} --tls-verify=false
+
 
 # Connect to internal openshift registry
 
