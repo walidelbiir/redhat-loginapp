@@ -2,9 +2,9 @@
 
 set -e
 
-#git clone $SOURCE_URI /tmp/src
+git clone $SOURCE_URI /tmp/src
 
-cd ${SOURCE_REPOSITORY}
+cd /tmp/src
 
 # Full image name
 FULL_IMAGE_NAME="${OUTPUT_REGISTRY}/${OUTPUT_IMAGE}"
