@@ -2,7 +2,7 @@
 
 set -e
 
-git clone $SOURCE_URI /tmp/src
+#git clone $SOURCE_URI /tmp/src
 
 cd /tmp/src
 
@@ -13,6 +13,8 @@ buildah login -u walid1243 -p BirBir123Bir123 registry.redhat.io
 
 # Build the image
 buildah bud -t ${FULL_IMAGE_NAME} -f ./Dockerfile-tomcat .
+
+buildah push --tls-verify=false ${FULL_IMAGE_NAME} 
 
 
 
