@@ -1,6 +1,6 @@
 docker-compose
-dockerfile
-Dockerfile-redhat
-.settings/
-.vscode/
+/dockerfile
+./Dockerfile-redhat
+/.settings/
+/.vscode/
 target/
