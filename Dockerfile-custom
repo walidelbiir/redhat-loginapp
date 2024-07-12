@@ -7,7 +7,7 @@ RUN mkdir -p ${HOME} && \
 
 COPY ./custom-scripts/ ${HOME}/scripts
 USER root
-RUN mv /tmp/src ${HOME}
+RUN mv ${SOURCE_REPOSITORY} ${HOME}
 
 RUN chmod +x ${HOME}/scripts/*.sh && \
     dnf update -y && \
