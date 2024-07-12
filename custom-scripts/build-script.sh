@@ -15,7 +15,7 @@ buildah login -u walid1243 -p BirBir123Bir123 registry.redhat.io
 # Build the image
 buildah bud -t ${FULL_IMAGE_NAME} -f ./Dockerfile-tomcat .
 
-buildah login -u builder -p ${TOKEN} ${OUTPUT_REGISTRY}
+buildah login -u builder -p ${TOKEN} ${OUTPUT_REGISTRY} --tls-verify=false
 
 buildah push --tls-verify=false ${FULL_IMAGE_NAME} 
 
