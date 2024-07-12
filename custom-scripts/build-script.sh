@@ -2,7 +2,7 @@
 
 set -e
 
-#git clone $SOURCE_URI /tmp/src
+git clone $SOURCE_URI /tmp/src
 
 cd /tmp/src
 
