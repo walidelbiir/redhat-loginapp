@@ -4,7 +4,7 @@ set -e
 
 #git clone $SOURCE_URI /tmp/src
 
-cd /tmp/src
+cd ${SOURCE_REPOSITORY}
 
 # Full image name
 FULL_IMAGE_NAME="${OUTPUT_REGISTRY}/${OUTPUT_IMAGE}"
