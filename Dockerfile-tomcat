@@ -9,7 +9,7 @@ WORKDIR /opt/app
 # Set permissions
 USER root
 RUN chgrp -R 0 /opt/app && \
-    chmod -R g=u /opt/app && 
+    chmod -R g=u /opt/app
     
 # Build War file needed
 RUN mvn install && echo "Maven build was successful" || (echo "Maven build failed" && exit 1)
