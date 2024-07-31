@@ -1,4 +1,4 @@
-FROM image-registry.openshift-image-registry.svc:5000/loginapp-dev/eap74-openjdk11-runtime-openshift-rhel8:7.4.17-5.1721172737
+FROM image-registry.openshift-image-registry.svc:5000/loginapp-dev/eap-xp4-openjdk11-runtime-openshift-rhel8:4.0-73.1721172740
 
 # Copy app to the container
 COPY . /opt/app
@@ -16,9 +16,15 @@ RUN chgrp -R 0 /opt/app && \
 # Build War file needed
 RUN mvn install && echo "Maven build was successful" || (echo "Maven build failed" && exit 1)
 
+# Set an environment variable for the deployments directory
+ENV DEPLOYMENT_DIR=${JBOSS_HOME}/standalone/deployments
+
+# Verify the directory exists and create it if it doesn't
+RUN mkdir -p $DEPLOYMENT_DIR
+
 # Copy the War file to the Tomcat webapps directory
 USER root
-RUN mv /opt/app/target/LoginWebApp.war /deployments
+RUN mv /opt/app/target/LoginWebApp.war ${DEPLOYMENT_DIR}
 
 # Expose the default Tomcat port
 EXPOSE 8080
