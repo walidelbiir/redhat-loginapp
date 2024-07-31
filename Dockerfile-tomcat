@@ -1,4 +1,4 @@
-FROM image-registry.openshift-image-registry.svc:5000/loginapp-dev/eap-xp4-openjdk11-runtime-openshift-rhel8:4.0-73.1721172740
+FROM registry.redhat.io/jboss-webserver-5/jws58-openjdk11-openshift-rhel8:5.8.0-5
 
 # Copy app to the container
 COPY . /opt/app
@@ -9,10 +9,8 @@ WORKDIR /opt/app
 # Set permissions
 USER root
 RUN chgrp -R 0 /opt/app && \
-    chmod -R g=u /opt/app && \
-    dnf update -y && \
-    dnf install -y maven
-
+    chmod -R g=u /opt/app && 
+    
 # Build War file needed
 RUN mvn install && echo "Maven build was successful" || (echo "Maven build failed" && exit 1)
 
