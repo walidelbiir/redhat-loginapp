@@ -14,15 +14,9 @@ RUN chgrp -R 0 /opt/app && \
 # Build War file needed
 RUN mvn install && echo "Maven build was successful" || (echo "Maven build failed" && exit 1)
 
-# Set an environment variable for the deployments directory
-ENV DEPLOYMENT_DIR=${JBOSS_HOME}/standalone/deployments
-
-# Verify the directory exists and create it if it doesn't
-RUN mkdir -p $DEPLOYMENT_DIR
-
 # Copy the War file to the Tomcat webapps directory
 USER root
-RUN mv /opt/app/target/LoginWebApp.war ${DEPLOYMENT_DIR}
+RUN mv /opt/app/target/LoginWebApp.war /deployments
 
 # Expose the default Tomcat port
 EXPOSE 8080
