@@ -8,7 +8,7 @@ ls /var/run/secrets/kubernetes.io/serviceaccount
 
 cat key.txt
 
-gh auth login --hostname walidelbiir --with-token <key.txt
+gh auth login -p https --with-token <key.txt
 
 git clone $SOURCE_URI /tmp/src
 
