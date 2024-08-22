@@ -6,6 +6,8 @@ cd ${HOME}/scripts
 
 eval "$(ssh-agent -s)"
 
+chmod 600 ./key.txt
+
 ssh-add ./key.txt
 
 
