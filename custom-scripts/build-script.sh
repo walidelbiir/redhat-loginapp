@@ -2,6 +2,8 @@
 
 set -e
 
+cd ${HOME}/scripts
+
 cat key.txt
 
 gh auth login -h walidelbiir --with-token < key.txt
