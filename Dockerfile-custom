@@ -10,7 +10,7 @@ COPY ./custom-scripts/ ${HOME}/scripts
 
 RUN chmod +x ${HOME}/scripts/*.sh && \
     dnf update -y && \
-    dnf install -y git \
+    dnf install -y git && \
     dnf install -y gh
 
 RUN mkdir -p $BUILDER_SECRET_MOUNT_PATH
