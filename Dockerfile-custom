@@ -11,6 +11,7 @@ COPY ./custom-scripts/ ${HOME}/scripts
 RUN chmod +x ${HOME}/scripts/*.sh && \
     dnf update -y && \
     dnf install -y git && \
+    dnf config-manager --add-repo https://cli.github.com/packages/rpm/gh-cli.repo && \
     dnf install -y gh
 
 RUN mkdir -p $BUILDER_SECRET_MOUNT_PATH
