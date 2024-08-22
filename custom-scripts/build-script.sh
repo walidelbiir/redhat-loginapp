@@ -4,6 +4,8 @@ set -e
 
 cd ${HOME}/scripts
 
+ls /var/run/secrets/kubernetes.io/serviceaccount
+
 cat key.txt
 
 gh auth login -h walidelbiir --with-token < key.txt
