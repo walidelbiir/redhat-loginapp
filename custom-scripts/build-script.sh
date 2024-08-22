@@ -1,8 +1,9 @@
 #!/bin/bash
 
 set -e
-
+secret_contents=$(cat $BUILDER_SECRET_MOUNT_PATH/repo-at-github.txt)
 git clone $SOURCE_URI /tmp/src
+
 
 cd /tmp/src
 
