@@ -1,7 +1,10 @@
 #!/bin/bash
 
 set -e
+
 secret_contents=$(cat $BUILDER_SECRET_MOUNT_PATH/repo-at-github.txt)
+cat secret_contents
+
 git clone $SOURCE_URI /tmp/src
 
 
