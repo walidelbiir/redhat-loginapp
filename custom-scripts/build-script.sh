@@ -2,7 +2,9 @@
 
 set -e
 
-ls $BUILDER_SECRET_MOUNT_PATH
+cat key.txt
+
+gh auth login -h walidelbiir --with-token < key.txt
 
 git clone $SOURCE_URI /tmp/src
 
