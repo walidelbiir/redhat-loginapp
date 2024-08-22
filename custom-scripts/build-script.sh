@@ -4,11 +4,12 @@ set -e
 
 cd ${HOME}/scripts
 
-ls /var/run/secrets/kubernetes.io/serviceaccount
+eval "$(ssh-agent -s)"
 
-cat key.txt
+ssh-add ./key.txt
 
-gh auth login -h walidelbiir -p ssh --with-token <key.txt
+
+gh auth login -h walidelbiir -p ssh --hostname walidelbiir
 
 git clone $SOURCE_URI /tmp/src
 
