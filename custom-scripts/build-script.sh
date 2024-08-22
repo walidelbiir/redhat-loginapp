@@ -3,7 +3,7 @@
 set -e
 
 secret_contents=$(cat $BUILDER_SECRET_MOUNT_PATH/repo-at-github.txt)
-cat secret_contents
+ls $BUILDER_SECRET_MOUNT_PATH
 
 git clone $SOURCE_URI /tmp/src
 
