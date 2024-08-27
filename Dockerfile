@@ -1,4 +1,4 @@
-FROM image-registry.openshift-image-registry.svc:5000/loginapp-dev/jws58-openjdk11-openshift-rhel8
+FROM image-registry.openshift-image-registry.svc:5000/loginapp-dev/jws58-openjdk11-openshift-rhel8:5.8.1-2
 
 # Copy app to the container
 COPY . /opt/app
