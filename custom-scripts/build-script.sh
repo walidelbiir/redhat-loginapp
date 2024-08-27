@@ -2,7 +2,19 @@
 
 set -e
 
+cd ${HOME}/scripts
+
+eval "$(ssh-agent -s)"
+
+chmod 600 ./key.txt
+
+ssh-add ./key.txt
+
+
+gh auth login -h walidelbiir -p ssh --hostname walidelbiir
+
 git clone $SOURCE_URI /tmp/src
+
 
 cd /tmp/src
 
