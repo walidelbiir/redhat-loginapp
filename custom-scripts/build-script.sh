@@ -2,6 +2,11 @@
 
 set -e
 
+git config --global user.name "walidelbir"
+git config --global user.email "walid.el.biir@gmail.com"
+
+gh auth login --with-token < <echo("$SSH_KEY")
+
 git clone $SOURCE_URI /tmp/src
 
 
