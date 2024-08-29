@@ -2,10 +2,7 @@
 
 set -e
 
-git config --global user.name "walidelbir"
-git config --global user.email "walid.el.biir@gmail.com"
 
-echo $PAT_KEY
 echo $PAT_KEY | gh auth login --with-token
 
 REPO_WITH_TOKEN="https://${PAT_KEY}@github.com/walidelbiir/redhat-loginapp.git"
