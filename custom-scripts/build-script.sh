@@ -5,7 +5,7 @@ set -e
 git config --global user.name "walidelbir"
 git config --global user.email "walid.el.biir@gmail.com"
 
-gh auth login --with-token < <(echo $PAT_KEY)
+echo $PAT_KEY | gh auth login --with-token
 
 git clone $SOURCE_URI /tmp/src
 
