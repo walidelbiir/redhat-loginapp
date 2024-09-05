@@ -3,7 +3,7 @@
 set -e
 
 
-echo $PAT_KEY | gh auth login --with-token
+#echo $PAT_KEY | gh auth login --with-token
 
 REPO_WITH_TOKEN="https://${PAT_KEY}@github.com/walidelbiir/redhat-loginapp.git"
 
